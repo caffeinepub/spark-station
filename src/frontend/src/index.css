@@ -1,0 +1,414 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --ss-bg: #0d1117;
+    --ss-card: #161b22;
+    --ss-accent: #58a6ff;
+    --ss-highlight: #8b5cf6;
+    --ss-text: #e6edf3;
+    --ss-muted: #8b949e;
+    --ss-border: rgba(48, 54, 61, 0.8);
+
+    --background: 0.078 0 0 / 100%;
+    --foreground: 0.92 0 0;
+    --card: 0.105 0 0;
+    --card-foreground: 0.92 0 0;
+    --popover: 0.105 0 0;
+    --popover-foreground: 0.92 0 0;
+    --primary: 0.58 0.18 240;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.13 0 0;
+    --secondary-foreground: 0.92 0 0;
+    --muted: 0.13 0 0;
+    --muted-foreground: 0.56 0 0;
+    --accent: 0.13 0 0;
+    --accent-foreground: 0.92 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.2 0 0 / 80%;
+    --input: 0.2 0 0;
+    --ring: 0.58 0.18 240;
+    --sidebar: 0.105 0 0;
+    --sidebar-foreground: 0.92 0 0;
+    --sidebar-primary: 0.58 0.18 240;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.13 0 0;
+    --sidebar-accent-foreground: 0.92 0 0;
+    --sidebar-border: 0.2 0 0 / 80%;
+    --sidebar-ring: 0.58 0.18 240;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: "GeneralSans", system-ui, -apple-system, sans-serif;
+    cursor: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @font-face {
+    font-family: "GeneralSans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "GeistMono";
+    src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+    font-display: swap;
+  }
+}
+
+/* Custom Cursor */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #58a6ff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  box-shadow: 0 0 10px #58a6ff, 0 0 20px rgba(88, 166, 255, 0.4);
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(88, 166, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, width 0.2s, height 0.2s;
+}
+
+.cursor-dot.clicking {
+  width: 12px;
+  height: 12px;
+  background: #8b5cf6;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: none;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #0d1117;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99997;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-logo-pulse {
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px #58a6ff);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px #58a6ff)
+      drop-shadow(0 0 40px rgba(139, 92, 246, 0.5));
+  }
+}
+
+.loading-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(88, 166, 255, 0.2);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #58a6ff, #8b5cf6);
+  border-radius: 1px;
+  animation: loadFill 1.4s ease-in-out forwards;
+}
+
+@keyframes loadFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Page Transition */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #58a6ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-reverse {
+  background: linear-gradient(135deg, #8b5cf6 0%, #58a6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cards */
+.ss-card {
+  background: #161b22;
+  border: 1px solid rgba(48, 54, 61, 0.8);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ss-card:hover {
+  border-color: rgba(88, 166, 255, 0.4);
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.1), 0 4px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #58a6ff, #8b5cf6);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #58a6ff;
+  padding: 11px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid #58a6ff;
+  cursor: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(88, 166, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #e6edf3;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid rgba(48, 54, 61, 0.8);
+  cursor: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(88, 166, 255, 0.4);
+  background: rgba(88, 166, 255, 0.05);
+}
+
+/* Section styles */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #58a6ff;
+  padding: 4px 12px;
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+/* Badge / Tech tags */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+  border: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.tech-badge-purple {
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Divider */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: rgba(48, 54, 61, 0.8);
+  margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(88, 166, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(88, 166, 255, 0.5);
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+}
+
+/* Particle canvas */
+#particle-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Accordion */
+.faq-item {
+  border-bottom: 1px solid rgba(48, 54, 61, 0.8);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+/* Stats counter */
+.counter-value {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #58a6ff, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+  a,
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  .counter-value {
+    font-size: 2rem;
+  }
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+}
