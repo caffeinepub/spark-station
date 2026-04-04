@@ -82,7 +82,7 @@ function LoadingScreen({ onDone }: { onDone: () => void }) {
     <div className={`loading-screen ${fading ? "fade-out" : ""}`}>
       <div className="loading-logo-pulse flex flex-col items-center gap-3">
         <img
-          src="/assets/generated/spark-station-logo-transparent.dim_200x200.png"
+          src="/assets/generated/spark-station-logo-new.png"
           alt="Spark Station"
           className="w-20 h-20"
         />
@@ -144,7 +144,7 @@ function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 no-underline">
           <img
-            src="/assets/generated/spark-station-logo-transparent.dim_200x200.png"
+            src="/assets/generated/spark-station-logo-new.png"
             alt="Logo"
             className="w-8 h-8"
           />
