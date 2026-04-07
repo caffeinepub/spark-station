@@ -1,0 +1,22 @@
+type Service = 
+ variant {
+   appDevelopment;
+   branding;
+   consultancy;
+   productDesign;
+   webDevelopment;
+ };
+type Inquiry = 
+ record {
+   email: text;
+   message: text;
+   name: text;
+   phone: opt text;
+   "service": Service;
+   timestamp: int;
+ };
+service : {
+  getAllInquiries: () -> (vec Inquiry) query;
+  sendInquiry: (name: text, email: text, phone: opt text, "service": 
+   Service, message: text) -> ();
+}

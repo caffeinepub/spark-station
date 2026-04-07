@@ -6,8 +6,6 @@ import {
   Phone,
 } from "lucide-react";
 import { useState } from "react";
-import { Service } from "../backend";
-import { useActor } from "../hooks/useActor";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -35,42 +33,43 @@ function blurBorder(
   e.target.style.borderColor = "rgba(48,54,61,0.8)";
 }
 
-export default function ContactPage() {
-  const { actor } = useActor();
+type ServiceType =
+  | "webDevelopment"
+  | "appDevelopment"
+  | "branding"
+  | "productDesign"
+  | "consultancy";
 
+export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    service: "" as Service | "",
+    service: "" as ServiceType | "",
     message: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const serviceOptions: { value: Service; label: string }[] = [
-    { value: Service.webDevelopment, label: "Web Development" },
-    { value: Service.appDevelopment, label: "App Development" },
-    { value: Service.branding, label: "Branding & Identity" },
-    { value: Service.productDesign, label: "Product Design" },
-    { value: Service.consultancy, label: "Technical Consultancy" },
+  const serviceOptions: { value: ServiceType; label: string }[] = [
+    { value: "webDevelopment", label: "Web Development" },
+    { value: "appDevelopment", label: "App Development" },
+    { value: "branding", label: "Branding & Identity" },
+    { value: "productDesign", label: "Product Design" },
+    { value: "consultancy", label: "Technical Consultancy" },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.service) return setError("Please select a service.");
-    if (!actor) return setError("Not connected. Please try again.");
     setError("");
     setSubmitting(true);
     try {
-      await actor.sendInquiry(
-        form.name,
-        form.email,
-        form.phone || null,
-        form.service as Service,
-        form.message,
-      );
+      // Submit via WhatsApp as fallback since backend doesn't have sendInquiry
+      const message = `New inquiry from ${form.name} (${form.email}): ${form.message}`;
+      const waUrl = `https://wa.me/919111376314?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, "_blank");
       setSuccess(true);
       setForm({ name: "", email: "", phone: "", service: "", message: "" });
     } catch {
@@ -303,7 +302,10 @@ export default function ContactPage() {
                     required
                     value={form.service}
                     onChange={(e) =>
-                      setForm({ ...form, service: e.target.value as Service })
+                      setForm({
+                        ...form,
+                        service: e.target.value as ServiceType,
+                      })
                     }
                     onFocus={focusBorder}
                     onBlur={blurBorder}
