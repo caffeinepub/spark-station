@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronUp,
   Code2,
+  ExternalLink,
   Globe,
   Mail,
   MessageCircle,
@@ -195,28 +196,46 @@ const services = [
 
 const portfolioProjects = [
   {
-    img: "/assets/generated/portfolio-project1.dim_800x500.jpg",
-    name: "E-Commerce Platform",
-    desc: "Full-stack store with real-time inventory, payments, and analytics dashboard.",
-    tags: ["React", "Node.js", "MongoDB"],
+    img: "/assets/fundoon-preview.png",
+    name: "Fundoon – Snooker Lounge & Cafe Website",
+    desc: "A luxury-style responsive website built for Fundoon Snooker & Cafe. The website showcases the lounge environment, attracts snooker players, and helps drive customer bookings through an engaging modern interface.",
+    tags: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Responsive Design",
+      "WhatsApp Integration",
+      "Google Maps",
+      "Instagram Embed",
+      "Google Reviews",
+    ],
+    live: "#",
+    liveLabel: "Live Preview",
   },
   {
-    img: "/assets/generated/portfolio-project2.dim_800x500.jpg",
-    name: "SaaS Dashboard",
-    desc: "B2B analytics platform with role-based access and real-time data visualization.",
-    tags: ["TypeScript", "Next.js", "PostgreSQL"],
+    img: "/assets/glaamz-preview.png",
+    name: "Glaamz Cafe – Bakery & Terrace Website",
+    desc: "A modern luxury website designed for Glaamz Cafe in Gwalior. The website highlights the cafe's bakery menu, rooftop terrace dining experience, and provides an easy WhatsApp-based table booking system.",
+    tags: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Responsive Design",
+      "WhatsApp API Integration",
+      "Instagram Embed",
+      "Google Maps",
+      "Google Reviews",
+    ],
+    live: "https://glaamzsparkstation-oah.caffeine.xyz/",
+    liveLabel: "Visit Website",
   },
   {
-    img: "/assets/generated/portfolio-project3.dim_800x500.jpg",
-    name: "Mobile Banking App",
-    desc: "Secure fintech app with KYC, transfers, and transaction history.",
-    tags: ["React Native", "Firebase", "Stripe"],
-  },
-  {
-    img: "/assets/generated/portfolio-project4.dim_800x500.jpg",
-    name: "Brand Identity System",
-    desc: "Complete rebrand: logo, guidelines, web presence, and marketing collateral.",
-    tags: ["Figma", "Branding", "Web"],
+    img: null,
+    name: "Spark Station – Official Website",
+    desc: "The official website of Spark Station, designed to showcase the company's services, portfolio, and technology solutions. Built with a modern startup-style interface to represent the brand's vision of turning ideas into digital reality.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Modern UI/UX", "Responsive Design"],
+    live: "#",
+    liveLabel: "View Website",
   },
 ];
 
@@ -513,30 +532,134 @@ export default function HomePage() {
             className="text-4xl md:text-5xl font-bold mt-2"
             style={{ letterSpacing: "-0.02em" }}
           >
-            Featured <span className="gradient-text">Projects</span>
+            Portfolio <span className="gradient-text">Projects</span>
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioProjects.map((p) => (
-            <div key={p.name} className="ss-card overflow-hidden">
-              <img
-                src={p.img}
-                alt={p.name}
-                className="w-full h-48 object-cover"
-                style={{ borderBottom: "1px solid rgba(48,54,61,0.8)" }}
-              />
-              <div className="p-6">
-                <h3 className="font-semibold mb-2">{p.name}</h3>
-                <p className="text-sm mb-4" style={{ color: "#8B949E" }}>
+            <div
+              key={p.name}
+              className="ss-card overflow-hidden group"
+              style={{
+                transition:
+                  "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(-6px)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 0 0 1px rgba(88,166,255,0.5), 0 12px 40px rgba(88,166,255,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+              }}
+            >
+              {/* Project Image */}
+              {p.img ? (
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-48 object-cover"
+                  style={{ borderBottom: "1px solid rgba(48,54,61,0.8)" }}
+                />
+              ) : (
+                <div
+                  className="w-full h-48 flex items-center justify-center relative overflow-hidden"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #0D1117 0%, #1a1f35 40%, #161B22 100%)",
+                    borderBottom: "1px solid rgba(48,54,61,0.8)",
+                  }}
+                >
+                  {/* Grid pattern overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundImage:
+                        "linear-gradient(rgba(88,166,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(88,166,255,0.07) 1px, transparent 1px)",
+                      backgroundSize: "28px 28px",
+                    }}
+                  />
+                  <div className="relative z-10 text-center px-4">
+                    <div
+                      className="text-3xl font-bold mb-1"
+                      style={{
+                        background: "linear-gradient(135deg, #58A6FF, #8B5CF6)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      }}
+                    >
+                      SS
+                    </div>
+                    <div
+                      className="text-xs font-medium"
+                      style={{ color: "#58A6FF", letterSpacing: "0.1em" }}
+                    >
+                      SPARK STATION
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Card Content */}
+              <div className="p-5 flex flex-col gap-3">
+                <h3
+                  className="font-semibold text-sm leading-snug"
+                  style={{ color: "#E6EDF3" }}
+                >
+                  {p.name}
+                </h3>
+                <p
+                  className="text-xs leading-relaxed"
+                  style={{ color: "#8B949E" }}
+                >
                   {p.desc}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-1.5 mt-1">
                   {p.tags.map((t) => (
                     <span key={t} className="tech-badge">
                       {t}
                     </span>
                   ))}
                 </div>
+                {/* Live Preview Button */}
+                <a
+                  href={p.live}
+                  target={p.live !== "#" ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg self-start"
+                  style={{
+                    background: "rgba(88,166,255,0.1)",
+                    color: "#58A6FF",
+                    border: "1px solid rgba(88,166,255,0.3)",
+                    transition:
+                      "background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "rgba(88,166,255,0.18)";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                      "0 0 14px rgba(88,166,255,0.35)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                      "rgba(88,166,255,0.6)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "rgba(88,166,255,0.1)";
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                      "rgba(88,166,255,0.3)";
+                  }}
+                >
+                  <ExternalLink size={12} />
+                  {p.liveLabel}
+                </a>
               </div>
             </div>
           ))}
