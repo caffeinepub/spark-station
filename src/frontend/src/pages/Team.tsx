@@ -3,7 +3,7 @@ import { Zap } from "lucide-react";
 
 const members = [
   {
-    img: "/assets/generated/team-saksham.dim_400x400.jpg",
+    img: "/assets/generated/team-saksham-real.jpg",
     name: "Saksham Pandey",
     role: "Founder & Lead Developer",
     bio: "Building robust, scalable web solutions. Saksham founded Spark Station with a vision to make world-class digital solutions accessible to every business.",
@@ -13,7 +13,7 @@ const members = [
     color: "#58A6FF",
   },
   {
-    img: "/assets/generated/team-shashwat.dim_400x400.jpg",
+    img: "/assets/generated/team-shashwat-real.jpg",
     name: "Shashwat Rai",
     role: "Finance & Operations Manager",
     bio: "Managing resources and business strategy. Shashwat keeps the business running smoothly, ensuring every project is delivered on budget and on time.",
@@ -28,7 +28,7 @@ const members = [
     color: "#8B5CF6",
   },
   {
-    img: "/assets/generated/team-niket.dim_400x400.jpg",
+    img: "/assets/generated/team-niket-real.jpg",
     name: "Niket",
     role: "Marketing & Content Strategist",
     bio: "Crafting compelling narratives and growth strategies. Niket drives brand awareness and positions Spark Station's clients for digital success.",

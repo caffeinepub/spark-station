@@ -21,7 +21,7 @@ const projects = [
       "Instagram Embed",
       "Google Reviews",
     ],
-    live: "#",
+    live: "https://fundoonsnooker-wsy.caffeine.xyz/",
     liveLabel: "Live Preview",
   },
   {

@@ -209,7 +209,7 @@ const portfolioProjects = [
       "Instagram Embed",
       "Google Reviews",
     ],
-    live: "#",
+    live: "https://fundoonsnooker-wsy.caffeine.xyz/",
     liveLabel: "Live Preview",
   },
   {
@@ -241,17 +241,17 @@ const portfolioProjects = [
 
 const team = [
   {
-    img: "/assets/generated/team-saksham.dim_400x400.jpg",
+    img: "/assets/generated/team-saksham-real.jpg",
     name: "Saksham Pandey",
     role: "Founder & Lead Developer",
   },
   {
-    img: "/assets/generated/team-shashwat.dim_400x400.jpg",
+    img: "/assets/generated/team-shashwat-real.jpg",
     name: "Shashwat Rai",
     role: "Finance & Operations",
   },
   {
-    img: "/assets/generated/team-niket.dim_400x400.jpg",
+    img: "/assets/generated/team-niket-real.jpg",
     name: "Niket",
     role: "Marketing & Content",
   },
